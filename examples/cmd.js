@@ -4,7 +4,8 @@ var MetaUtil = require('../');
 MetaUtil({
     'start': process.argv[2],
     'end': process.argv[3],
-    'delay': process.argv[4]
+    'delay': process.argv[4],
+    'tags': 'added'
 }).pipe(process.stdout)
 
 //Call with node cmd.js 001181708 001181721
