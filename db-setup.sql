@@ -2,7 +2,7 @@
 CREATE SCHEMA logging AUTHORIZATION osmchangesetmetadata;
 
 CREATE TABLE logging.sequence (sequence text);
-INSERT INTO logging.sequence (sequence) values ('000521300');
+INSERT INTO logging.sequence (sequence) values ('001337000');
 
 CREATE TABLE logging.changesets (
   changeset_id int PRIMARY KEY,
