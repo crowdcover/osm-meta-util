@@ -116,10 +116,11 @@ MetaUtil.prototype.run = function() {
                 .insert({
                   changeset_id: that._changesetAttrs['id'],
                   username: that._changesetAttrs['user'],
+                  uid: that._changesetAttrs['uid'],
                   closed_at: that._changesetAttrs['closed_at'],
                   num_changes: that._changesetAttrs['num_changes'],
                   comment: that._changesetAttrs['comment'],
-                  tag: intersection[j-1]
+                  tag: intersection[0]
                 }).
                 then(function(){
                   console.log(JSON.stringify(that._changesetAttrs) + '\n');
