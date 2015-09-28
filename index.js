@@ -184,9 +184,9 @@ MetaUtil.prototype.run = function() {
                 var nodata = true;
                 //If YAML state is bigger, we can get a new file
                 if (Number(body.substr(body.length - 8)) >= that.state) {
-                    var url = that.baseURL + url.split('').reverse().join('') + '.osm.gz';
-                    console.log('Processing: ' + url);
-                    var ss = request.get(url)
+                    var fullURL = that.baseURL + url.split('').reverse().join('') + '.osm.gz';
+                    console.log('Processing: ' + fullURL);
+                    var ss = request.get(fullURL)
                          .on('error', function(err) {
                             console.log(err);
                         })
