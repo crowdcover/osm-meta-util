@@ -1,5 +1,5 @@
 ﻿--DROP SCHEMA logging CASCADE;
-CREATE SCHEMA logging AUTHORIZATION osmchangesetmetadata;
+CREATE SCHEMA logging AUTHORIZATION osmstats;
 
 CREATE TABLE logging.sequence (sequence text);
 INSERT INTO logging.sequence (sequence) values ('001337000');
