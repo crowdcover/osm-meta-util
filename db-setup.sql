@@ -13,3 +13,10 @@ CREATE TABLE logging.changesets (
   comment text,
   tag text
 );
+
+CREATE TABLE logging.stats (
+key text PRIMARY KEY,
+value int
+);
+INSERT INTO logging.stats (key, value) VALUES ('totalRoads', 0);
+INSERT INTO logging.stats (key, value) VALUES ('taggedRoads', 0);

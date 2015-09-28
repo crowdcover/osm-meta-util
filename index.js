@@ -86,7 +86,13 @@ MetaUtil.prototype.run = function() {
 
     function queueNext() {
       that.diff -= 1;
-      if (that.diff > 0 || that.liveMode) {
+      
+      //in collect mode, after we have caught up, drop the check rate to once a minute
+      if(that.collectMode && that.diff == 0){
+          that.delay = 60000;
+      }
+      
+      if (that.diff > 0 || that.liveMode || that.collectMode) {
         setTimeout(function() {
           next();
         }, that.delay);
@@ -178,7 +184,12 @@ MetaUtil.prototype.run = function() {
                 var nodata = true;
                 //If YAML state is bigger, we can get a new file
                 if (Number(body.substr(body.length - 8)) >= that.state) {
-                    var ss = request.get(that.baseURL + url.split('').reverse().join('') + '.osm.gz')
+                    var url = that.baseURL + url.split('').reverse().join('') + '.osm.gz';
+                    console.log('Processing: ' + url);
+                    var ss = request.get(url)
+                         .on('error', function(err) {
+                            console.log(err);
+                        })
                         .pipe(zlib.createUnzip())
                         .on('data', function(data) {
                           nodata = (data.length === 0) && nodata;
