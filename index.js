@@ -63,7 +63,8 @@ MetaUtil.prototype._read = function() {
           request.get('http://planet.osm.org/replication/changesets/state.yaml',
           function(err, response, body) {
               that.state =  Number(seq); //start whereever we left off in the database
-              that.end = Number(body.substr(body.length - 8)); //end with the latest data
+              //that.end = Number(body.substr(body.length - 8)); //end with the latest data
+              that.end = Infinity; //don't stop
               that.diff = that.end - that.state + 1;
               that.run();
               that.started = true;
@@ -215,6 +216,11 @@ MetaUtil.prototype.run = function() {
                       that.state += 1;
                     }
 
+                } else {
+                    if(that.collectMode){
+                        //in collect mode, as soon as we catch up, switch to a 60 sec loop
+                        this.delay =  60000;
+                    }
                 }
             }
         );
